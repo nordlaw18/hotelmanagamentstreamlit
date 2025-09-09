@@ -79,24 +79,12 @@ if "page" in query_params:
     }
     st.session_state.page = page_map.get(query_params["page"], "Home")
 
-# --- Homepage (No white block) ---
+# --- Homepage (No images, only centered text and navbar) ---
 if st.session_state.page == "Home":
-    # Centered Logo and Text directly on background
-    st.markdown('<div style="text-align:center; padding-top:80px;">', unsafe_allow_html=True)
-    st.image(
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Star_Hotel_Logo.svg/512px-Star_Hotel_Logo.svg.png",
-        width=120
-    )
+    st.markdown('<div style="text-align:center; padding-top:150px;">', unsafe_allow_html=True)
     st.markdown('<h1 style="text-align:center; color:white; font-size:48px;">🏨 Welcome to Luxury Stay Hotels</h1>', unsafe_allow_html=True)
     st.markdown('<p style="text-align:center; color:white; font-size:20px;">Experience comfort, convenience, and premium services at our hotels across India.</p>', unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
-
-    # Hero Image (optional: can remove if you want full background visible)
-    st.image(
-        "https://images.unsplash.com/photo-1551776235-dde6d4829808",
-        use_container_width=True,
-        caption="Your Comfort, Our Priority ✨"
-    )
 
     # Navbar (only on homepage)
     st.markdown(

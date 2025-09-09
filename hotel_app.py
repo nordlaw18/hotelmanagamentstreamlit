@@ -47,14 +47,12 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# --- Sidebar Menu ---
-menu = st.sidebar.radio(
-    "Navigation",
-    ["Home", "Properties & Rooms", "Bookings", "Invoices", "Payments", "Tenant Profile", "About Us", "Contact Us"]
-)
+# --- Session State for Navigation ---
+if "page" not in st.session_state:
+    st.session_state.page = "Home"
 
-# --- Home Page ---
-if menu == "Home":
+# --- Home Page with Navbar ---
+if st.session_state.page == "Home":
     st.image(
         "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Star_Hotel_Logo.svg/512px-Star_Hotel_Logo.svg.png",
         width=120
@@ -63,12 +61,39 @@ if menu == "Home":
     st.write("Experience comfort, convenience, and premium services at our hotels across India.")
     st.image(
         "https://images.unsplash.com/photo-1551776235-dde6d4829808",
-        use_container_width=True,  # changed
+        use_container_width=True,
         caption="Your Comfort, Our Priority ✨"
     )
 
+    # Navigation bar only here
+    st.subheader("🔗 Quick Navigation")
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        if st.button("🏘️ Properties & Rooms"):
+            st.session_state.page = "Properties & Rooms"
+    with col2:
+        if st.button("📅 Bookings"):
+            st.session_state.page = "Bookings"
+    with col3:
+        if st.button("🧾 Invoices"):
+            st.session_state.page = "Invoices"
+
+    col4, col5, col6 = st.columns(3)
+    with col4:
+        if st.button("💳 Payments"):
+            st.session_state.page = "Payments"
+    with col5:
+        if st.button("👤 Tenant Profile"):
+            st.session_state.page = "Tenant Profile"
+    with col6:
+        if st.button("ℹ️ About Us"):
+            st.session_state.page = "About Us"
+
+    if st.button("📞 Contact Us"):
+        st.session_state.page = "Contact Us"
+
 # --- Properties & Rooms ---
-elif menu == "Properties & Rooms":
+elif st.session_state.page == "Properties & Rooms":
     st.header("🏘️ Available Properties & Rooms")
 
     st.markdown('<div class="card">', unsafe_allow_html=True)
@@ -97,8 +122,11 @@ elif menu == "Properties & Rooms":
     st.button("Book Green Stay", key="book2")
     st.markdown('</div>', unsafe_allow_html=True)
 
+    if st.button("⬅️ Back to Home"):
+        st.session_state.page = "Home"
+
 # --- Bookings ---
-elif menu == "Bookings":
+elif st.session_state.page == "Bookings":
     st.header("📅 Make a Booking")
     st.markdown('<div class="card">', unsafe_allow_html=True)
 
@@ -115,8 +143,11 @@ elif menu == "Bookings":
 
     st.markdown('</div>', unsafe_allow_html=True)
 
+    if st.button("⬅️ Back to Home"):
+        st.session_state.page = "Home"
+
 # --- Invoices ---
-elif menu == "Invoices":
+elif st.session_state.page == "Invoices":
     st.header("🧾 Your Invoices")
 
     st.markdown('<div class="card">', unsafe_allow_html=True)
@@ -125,8 +156,11 @@ elif menu == "Invoices":
     st.download_button("📥 Download Invoice #101 (PDF)", "Sample Invoice Content", file_name="invoice_101.pdf")
     st.markdown('</div>', unsafe_allow_html=True)
 
+    if st.button("⬅️ Back to Home"):
+        st.session_state.page = "Home"
+
 # --- Payments ---
-elif menu == "Payments":
+elif st.session_state.page == "Payments":
     st.header("💳 Make a Payment")
     st.markdown('<div class="card">', unsafe_allow_html=True)
 
@@ -138,8 +172,11 @@ elif menu == "Payments":
 
     st.markdown('</div>', unsafe_allow_html=True)
 
+    if st.button("⬅️ Back to Home"):
+        st.session_state.page = "Home"
+
 # --- Tenant Profile ---
-elif menu == "Tenant Profile":
+elif st.session_state.page == "Tenant Profile":
     st.header("👤 Tenant Profile")
     st.markdown('<div class="card">', unsafe_allow_html=True)
 
@@ -156,8 +193,11 @@ elif menu == "Tenant Profile":
 
     st.markdown('</div>', unsafe_allow_html=True)
 
+    if st.button("⬅️ Back to Home"):
+        st.session_state.page = "Home"
+
 # --- About Us ---
-elif menu == "About Us":
+elif st.session_state.page == "About Us":
     st.header("ℹ️ About Us")
     st.markdown('<div class="card">', unsafe_allow_html=True)
     st.write("""
@@ -168,12 +208,15 @@ elif menu == "About Us":
     """)
     st.image(
         "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267",
-        use_container_width=True  # changed
+        use_container_width=True
     )
     st.markdown('</div>', unsafe_allow_html=True)
 
+    if st.button("⬅️ Back to Home"):
+        st.session_state.page = "Home"
+
 # --- Contact Us ---
-elif menu == "Contact Us":
+elif st.session_state.page == "Contact Us":
     st.header("📞 Contact Us")
     st.markdown('<div class="card">', unsafe_allow_html=True)
     st.write("📍 Address: 123 Luxury Street, Mumbai, India")
@@ -187,6 +230,9 @@ elif menu == "Contact Us":
         unsafe_allow_html=True,
     )
     st.markdown('</div>', unsafe_allow_html=True)
+
+    if st.button("⬅️ Back to Home"):
+        st.session_state.page = "Home"
 
 # --- Footer ---
 st.markdown('<div class="footer">© 2025 Luxury Stay Hotels | Made with ❤️ using Streamlit</div>', unsafe_allow_html=True)

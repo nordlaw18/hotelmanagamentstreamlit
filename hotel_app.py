@@ -79,14 +79,8 @@ if "page" in query_params:
     }
     st.session_state.page = page_map.get(query_params["page"], "Home")
 
-# --- Homepage (No images, only centered text and navbar) ---
-if st.session_state.page == "Home":
-    st.markdown('<div style="text-align:center; padding-top:150px;">', unsafe_allow_html=True)
-    st.markdown('<h1 style="text-align:center; color:white; font-size:48px;">🏨 Welcome to Luxury Stay Hotels</h1>', unsafe_allow_html=True)
-    st.markdown('<p style="text-align:center; color:white; font-size:20px;">Experience comfort, convenience, and premium services at our hotels across India.</p>', unsafe_allow_html=True)
-    st.markdown('</div>', unsafe_allow_html=True)
-
-    # Navbar (only on homepage)
+# --- Navbar Function ---
+def show_navbar():
     st.markdown(
         """
         <div class="navbar">
@@ -102,8 +96,21 @@ if st.session_state.page == "Home":
         unsafe_allow_html=True
     )
 
-# --- Other Pages (with white block) ---
+# --- Homepage ---
+if st.session_state.page == "Home":
+    st.markdown('<div style="text-align:center; padding-top:150px;">', unsafe_allow_html=True)
+    st.markdown('<h1 style="text-align:center; color:white; font-size:48px;">🏨 Welcome to Luxury Stay Hotels</h1>', unsafe_allow_html=True)
+    st.markdown('<p style="text-align:center; color:white; font-size:20px;">Experience comfort, convenience, and premium services at our hotels across India.</p>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
+
+    # Navbar below welcome text on homepage
+    show_navbar()
+
+# --- Other Pages ---
 else:
+    # Show navbar at top
+    show_navbar()
+
     with st.container():
         st.markdown('<div class="main">', unsafe_allow_html=True)
 

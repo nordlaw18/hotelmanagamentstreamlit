@@ -55,12 +55,17 @@ menu = st.sidebar.radio(
 
 # --- Home Page ---
 if menu == "Home":
-    st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Star_Hotel_Logo.svg/512px-Star_Hotel_Logo.svg.png",
-             width=120)
+    st.image(
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Star_Hotel_Logo.svg/512px-Star_Hotel_Logo.svg.png",
+        width=120
+    )
     st.title("🏨 Welcome to Luxury Stay Hotels")
     st.write("Experience comfort, convenience, and premium services at our hotels across India.")
-    st.image("https://images.unsplash.com/photo-1551776235-dde6d4829808", 
-             use_column_width=True, caption="Your Comfort, Our Priority ✨")
+    st.image(
+        "https://images.unsplash.com/photo-1551776235-dde6d4829808",
+        use_container_width=True,  # changed
+        caption="Your Comfort, Our Priority ✨"
+    )
 
 # --- Properties & Rooms ---
 elif menu == "Properties & Rooms":
@@ -97,11 +102,10 @@ elif menu == "Bookings":
     st.header("📅 Make a Booking")
     st.markdown('<div class="card">', unsafe_allow_html=True)
 
-    room = st.selectbox("Select Room", 
-                        ["Single AC - Sunrise Residency", 
-                         "Double AC - Sunrise Residency", 
-                         "Non-AC Single - Green Stay", 
-                         "AC Double - Green Stay"])
+    room = st.selectbox(
+        "Select Room", 
+        ["Single AC - Sunrise Residency", "Double AC - Sunrise Residency", "Non-AC Single - Green Stay", "AC Double - Green Stay"]
+    )
     check_in = st.date_input("Check-in Date", value=date.today())
     check_out = st.date_input("Check-out Date", value=date.today())
     guests = st.number_input("Number of Guests", min_value=1, max_value=4, value=1)
@@ -162,7 +166,10 @@ elif menu == "About Us":
         Our mission is to provide guests with unforgettable experiences combining luxury, 
         affordability, and world-class hospitality.
     """)
-    st.image("https://images.unsplash.com/photo-1522708323590-d24dbb6b0267", use_column_width=True)
+    st.image(
+        "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267",
+        use_container_width=True  # changed
+    )
     st.markdown('</div>', unsafe_allow_html=True)
 
 # --- Contact Us ---
